@@ -3,26 +3,34 @@ import PocketBase from 'pocketbase';
 import { useState } from 'react'
 import { useRouter } from 'next/navigation';
 
-function resolveAfter2Secs() {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve('resolved');
-    }, 2000);
-  });
-}
+export const dynamic = 'auto',
+  dynamicParams = true,
+  revalidate = 0,
+  fetchCache = 'auto',
+  runtime = 'nodejs',
+  preferredRegion = 'auto'
+
 export default function CreateNote() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-
   const router = useRouter();
+
   const create = async () => {
-    result = await fetchBooks(); 
-    console.log(result);
+    const pb = new PocketBase("http://127.0.0.1:8090");
+
+    const data = {
+      "title": `${title}`,
+      "content": `${content}`,
+    };
+
+    const record = await pb.collection('notes').create(data);
+    setTitle('');
+    setContent('');
+    router.refresh();
   }
 
   return (
-    <>
-    <form onSubmit={create}>
+    <form onSubmit={(e) => {e.preventDefault(); create();}}>
       <h3>Create a new Note</h3>
       <input
         type="text"
@@ -39,7 +47,5 @@ export default function CreateNote() {
         Create note
       </button>
     </form>
-    <button onSubmit={createTest}>testCreate</button>
-    </>
   );
 } 
