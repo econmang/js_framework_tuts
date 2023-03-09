@@ -1,3 +1,7 @@
 node_modules
 package-lock.json
 pnpm-lock.yaml
+
+.vscode
+/next13-tut/pb_data
+/next13-tut/pb_migrations

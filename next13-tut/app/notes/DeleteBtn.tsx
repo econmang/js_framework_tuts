@@ -10,12 +10,17 @@ export const dynamic = 'auto',
   runtime = 'nodejs',
   preferredRegion = 'auto'
 
-export default function DeleteBtn({ id }: string) {
+type Props = {
+  id: string
+}
+
+export default function DeleteBtn({ id }: Props) {
   const router = useRouter();
 
   const deleteNote = async () => {
-    pb = new PocketBase("http://127.0.0.1:8090");
-    res = await pb.collection('notes').delete(`${id}`);
+    const pb = new PocketBase("http://127.0.0.1:8090");
+    const res = await pb.collection('notes').delete(`${id}`);
+    console.log(res);
     router.refresh();
   }
 

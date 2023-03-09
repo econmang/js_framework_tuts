@@ -8,6 +8,12 @@
 # testing
 /coverage
 
+# development environment
+.vscode/
+
+# db
+next13-tut/pb_data/data.db
+
 # next.js
 /.next/
 /out/

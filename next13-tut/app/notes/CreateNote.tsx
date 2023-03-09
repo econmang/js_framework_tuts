@@ -24,6 +24,7 @@ export default function CreateNote() {
     };
 
     const record = await pb.collection('notes').create(data);
+    console.log(record)
     setTitle('');
     setContent('');
     router.refresh();

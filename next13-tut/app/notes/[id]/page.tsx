@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import styles from '../Notes.module.css';
 
 async function getNote(noteId: string) {
@@ -11,7 +10,15 @@ async function getNote(noteId: string) {
   return data;
 }
 
-export default async function NotePage({ params }) {
+type Params = {
+  id: string
+}
+
+type Props = {
+  params: Params
+}
+
+export default async function NotePage({ params }: Props) {
   const note = await getNote(params.id);
 
   return (

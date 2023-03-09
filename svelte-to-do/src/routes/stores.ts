@@ -13,7 +13,7 @@ export function add_todo_item(item: String): void {
 
 export function remove_todo_item(index: Number): void {
 	todo_list.update((items) => {
-		items.splice(index, 1)
+		items.splice(index)
 		return items
 	})
 }
