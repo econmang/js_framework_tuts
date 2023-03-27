@@ -12,7 +12,7 @@
 .vscode/
 
 # db
-next13-tut/pb_data/data.db
+next13-tut/pb_data/
 
 # next.js
 /.next/
